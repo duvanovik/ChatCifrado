@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author duvan
- *
- */
-module ChatCifrado {
-}
