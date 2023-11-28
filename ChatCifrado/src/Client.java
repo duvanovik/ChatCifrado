@@ -27,7 +27,7 @@ public class Client {
             dis.readFully(serverPubKey);
             
             //TEST
-            System.out.println("Clave pública del servidor (recibida): " + Arrays.toString(serverPubKey));
+            //System.out.println("Clave pública del servidor (recibida): " + Arrays.toString(serverPubKey));
 
 
             // Enviar clave pública al servidor
@@ -36,13 +36,13 @@ public class Client {
             dos.write(publicKey);
             
             //TEST
-            System.out.println("Clave pública del cliente (enviada): " + Arrays.toString(publicKey));
+            //System.out.println("Clave pública del cliente (enviada): " + Arrays.toString(publicKey));
 
             
             // Generar clave compartida
             byte[] sharedSecret = dh.generateSharedSecret(serverPubKey);
             AES aes = new AES(sharedSecret);
-            System.out.println("Clave compartida en el cliente: " + Arrays.toString(sharedSecret));
+           // System.out.println("Clave compartida en el cliente: " + Arrays.toString(sharedSecret));
 
             // Lógica del chat cifrado
             boolean continuar = true;
@@ -55,7 +55,7 @@ public class Client {
                 } else {
                     // Enviar mensaje cifrado
                     byte[] encryptedMessage = aes.encrypt(messageToSend);
-                    System.out.println("Mensaje cifrado del cliente: " + Arrays.toString(encryptedMessage));
+                   // System.out.println("Mensaje cifrado del cliente: " + Arrays.toString(encryptedMessage));
                     dos.writeInt(encryptedMessage.length);
                     dos.write(encryptedMessage);
 
@@ -64,7 +64,7 @@ public class Client {
                     byte[] encryptedResponse = new byte[responseLength];
                     dis.readFully(encryptedResponse);
                     String response = aes.decrypt(encryptedResponse);
-                    System.out.println("Respuesta descifrada en el cliente: " + response);
+                   // System.out.println("Respuesta descifrada en el cliente: " + response);
                     System.out.println("Servidor responde: " + response);
                 }
             }

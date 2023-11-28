@@ -26,7 +26,7 @@ public class Server {
                 dos.write(publicKey);
                 
                 //TEST
-                System.out.println("Clave publica del servidor (enviada): " + Arrays.toString(publicKey));
+                //System.out.println("Clave publica del servidor (enviada): " + Arrays.toString(publicKey));
 
                 // Recibir clave pública del cliente
                 int keyLength = dis.readInt();
@@ -34,7 +34,7 @@ public class Server {
                 dis.readFully(clientPubKey);
                 
                 //TEST
-                System.out.println("Clave pública del cliente (recibida): " + Arrays.toString(clientPubKey));
+                //System.out.println("Clave pública del cliente (recibida): " + Arrays.toString(clientPubKey));
 
 
                 // Generar clave compartida
@@ -42,7 +42,7 @@ public class Server {
                 AES aes = new AES(sharedSecret);
                 
                 //TEST
-                System.out.println("Clave compartida en el servidor: " + Arrays.toString(sharedSecret));
+                //System.out.println("Clave compartida en el servidor: " + Arrays.toString(sharedSecret));
 
                 
                 // Lógica del chat cifrado
@@ -55,7 +55,7 @@ public class Server {
                             byte[] encryptedMessage = new byte[messageLength];
                             dis.readFully(encryptedMessage);
                             String message = aes.decrypt(encryptedMessage);
-                            System.out.println("Mensaje descifrado en el servidor: " + message);
+                           // System.out.println("Mensaje descifrado en el servidor: " + message);
 
 
                             // Procesar mensaje
@@ -64,7 +64,7 @@ public class Server {
                             // Responder al cliente
                             String response = "Mensaje recibido: " + message;
                             byte[] encryptedResponse = aes.encrypt(response);
-                            System.out.println("Respuesta cifrada del servidor: " + Arrays.toString(encryptedResponse));
+                            //System.out.println("Respuesta cifrada del servidor: " + Arrays.toString(encryptedResponse));
                             dos.writeInt(encryptedResponse.length);
                             dos.write(encryptedResponse);
                         } else {
