@@ -1,4 +1,4 @@
-# Informe del Proyecto de Chat Cifrado
+# Informe del Proyecto de Chat Cifrado Duvan García
 
 ## Introducción
 
